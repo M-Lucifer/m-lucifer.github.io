@@ -4,7 +4,10 @@
     <title>网站维修艺术</title>
     <url>/2021/03/31/the-art-of-blog-maintenance/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="文章发布时报错"><a href="#文章发布时报错" class="headerlink" title="文章发布时报错"></a><strong>文章发布时报错</strong></h4><p><em>title: the art of blog maintenance</em><br><em>date: 2021-03-31 21:28:32</em><br><em>tags:网站维修艺术</em></p>
-<p>将引号后面的空格删除，看看输入法是不是英文</p>
+<p>检查输入法是不是英文，空格是不是用英文输入法打的</p>
+<h4 id="title：date：tags：在网站中显示"><a href="#title：date：tags：在网站中显示" class="headerlink" title="title：date：tags：在网站中显示**"></a><strong>title：date：tags：在网站中显示**</strong></h4><p>空格不要删除 改成</p>
+<p><em>title: 2021-3-31</em><br><em>date: 2021-03-31 06:28:42</em><br><em>tags: 札记</em></p>
+<h4 id="Thu-Dec-30-2021-00-00-00-GMT-0800-显示为文章标题"><a href="#Thu-Dec-30-2021-00-00-00-GMT-0800-显示为文章标题" class="headerlink" title="[Thu Dec 30 2021 00:00:00 GMT+0800 ]显示为文章标题"></a><strong>[Thu Dec 30 2021 00:00:00 GMT+0800 ]显示为文章标题</strong></h4><p>title 不能为这种形式<em>title: 2021-03-31</em></p>
 <h4 id="文章发布基本流程"><a href="#文章发布基本流程" class="headerlink" title="文章发布基本流程"></a><strong>文章发布基本流程</strong></h4><p><em>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</em></p>
 ]]></content>
       <tags>
@@ -12,21 +15,18 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>2021-3-31</title>
     <url>/2021/03/31/2021-3-31/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<p>title:2021-3-31<br>date:2021-03-31 06:28:42<br>tags:札记</p>
-<hr>
-<h4 id="总结与教训"><a href="#总结与教训" class="headerlink" title="总结与教训"></a><strong>总结与教训</strong></h4><p>今天晚上睡眠质量很差，有蚊子。前一天晚上六点左右记得关窗。应急预案的话，就是打开空调，喷点花露水，把身体遮盖住，但是尽量别这么做。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="总结与教训"><a href="#总结与教训" class="headerlink" title="总结与教训"></a><strong>总结与教训</strong></h4><p>今天晚上睡眠质量很差，有蚊子。前一天晚上六点左右记得关窗。应急预案的话，就是打开空调，喷点花露水，把身体遮盖住，但是尽量别这么做。</p>
 ]]></content>
+      <tags>
+        <tag>札记</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>2021-3-30</title>
     <url>/2021/03/30/2021-3-30/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<p>title:2021-03-30<br>date:2021-03-30 23:22:07<br>tags:札记</p>
-<hr>
-<p>2021-3-30</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>2021-3-30</p>
 <h4 id="健身"><a href="#健身" class="headerlink" title="健身"></a><strong>健身</strong></h4><h6 id="日常"><a href="#日常" class="headerlink" title="日常\"></a><strong><em>日常\</em></strong></h6><p>卧抬腿12 蚌式开合 20</p>
 <h4 id="数学"><a href="#数学" class="headerlink" title="数学"></a><strong>数学</strong></h4><p>复习极限 背诵公式：x-sinx<del>1/6x^3 tanx-x</del>1/3x^3          1-cosx~1/2x^2 </p>
 <h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><strong>数据结构</strong></h4><p>没复习 </p>
@@ -35,6 +35,9 @@
 <h4 id="感想"><a href="#感想" class="headerlink" title="感想"></a><strong>感想</strong></h4><p><strong>今天算是第一天吧，要坚持下去啊，真的。</strong></p>
 <p><strong>看了《禅与摩托车维修维修艺术》感觉还行吧，符合预期，又和预期得不一样，以为是要讲什么高深莫测的。不过确实受到了启发，还真的是讲摩托车维修种种。心中燃起了骑摩托旅行的冲动，希望未来能实现吧，带上《禅与摩托车》，依照着书本，开启一趟说走就走的旅行。想起了一些过去的事情，还有一些对于女权的思考，《生命3.0》也还不错，讲了很多浅显的事实。ε=(´ο｀*)))唉，现在太晚了，不能再聊下去了，晚安，夜之城。</strong></p>
 ]]></content>
+      <tags>
+        <tag>札记</tag>
+      </tags>
   </entry>
   <entry>
     <title>建站纪念帖</title>
