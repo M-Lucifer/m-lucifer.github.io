@@ -154,6 +154,150 @@
     
     
     <article
+  id="post-the-art-of-blog-maintenance"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/31/the-art-of-blog-maintenance/"
+    >网站维修艺术</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/31/the-art-of-blog-maintenance/" class="article-date">
+  <time datetime="2021-03-31T13:28:32.000Z" itemprop="datePublished">2021-03-31</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="文章发布时报错"><a href="#文章发布时报错" class="headerlink" title="文章发布时报错"></a><strong>文章发布时报错</strong></h4><p><em>title: the art of blog maintenance</em><br><em>date: 2021-03-31 21:28:32</em><br><em>tags:网站维修艺术</em></p>
+<p>检查输入法是不是英文，空格是不是用英文输入法打的</p>
+<h4 id="title：date：tags：在网站中显示"><a href="#title：date：tags：在网站中显示" class="headerlink" title="title：date：tags：在网站中显示"></a><strong>title：date：tags：在网站中显示</strong></h4><p>空格不要删除 改成</p>
+<p><em>title: 2021-3-31</em><br><em>date: 2021-03-31 06:28:42</em><br><em>tags: 札记</em></p>
+<h4 id="Thu-Dec-30-2021-00-00-00-GMT-0800-显示为文章标题"><a href="#Thu-Dec-30-2021-00-00-00-GMT-0800-显示为文章标题" class="headerlink" title="[Thu Dec 30 2021 00:00:00 GMT+0800 ]显示为文章标题"></a><strong>[Thu Dec 30 2021 00:00:00 GMT+0800 ]显示为文章标题</strong></h4><p>title 不能为这种形式<em>title: 2021-03-31</em></p>
+<h4 id="文章发布基本流程"><a href="#文章发布基本流程" class="headerlink" title="文章发布基本流程"></a><strong>文章发布基本流程</strong></h4><p><em>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</em></p>
+<h4 id="标签（tags）报错"><a href="#标签（tags）报错" class="headerlink" title="标签（tags）报错"></a><strong>标签（tags）报错</strong></h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33857230/article/details/91474562">https://blog.csdn.net/weixin_33857230/article/details/91474562</a></p>
+<p>生成“标签”页并添加tpye属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
+<p>添加type: “tags”到内容中，添加后是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">type: tags</span><br><span class="line">layout: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>注意<strong>引号</strong>位置，可以开源代码模式编写。</p>
+<h4 id="分类（categories）报错"><a href="#分类（categories）报错" class="headerlink" title="分类（categories）报错"></a><strong>分类（categories）报错</strong></h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33857230/article/details/91474562">https://blog.csdn.net/weixin_33857230/article/details/91474562</a></p>
+<p>生成“分类”页并添加tpye属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>但是这样部署之后，在分类页面还是看不到任何分类的，同时官方的next教程中并没有写。<br>其实为文章添加分类关联的教程已经在hexo教程给出了。<br>下面仅仅做个简单的介绍，全面的教程参照<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter.html#%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE">hexo官方教程(需备梯子)</a>。需要在其中添加categories属性，再部署之后就可以在分类页看到分类了。</p>
+<p><strong>分类内容暂时还是不需要算了，感觉和标签重复了很多。</strong></p>
+<h4 id="表格显示方法"><a href="#表格显示方法" class="headerlink" title="表格显示方法"></a>表格显示方法</h4><table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="right">右对齐</th>
+<th align="right">居中对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">单元格</td>
+<td align="right">单元格</td>
+<td align="right">单元格</td>
+</tr>
+<tr>
+<td align="left">单元格</td>
+<td align="right">单元格</td>
+<td align="right">单元格</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%AB%99%E7%BB%B4%E4%BF%AE%E8%89%BA%E6%9C%AF/" rel="tag">网站维修艺术</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-3-31"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/31/2021-3-31/"
+    >2021-3-31</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/31/2021-3-31/" class="article-date">
+  <time datetime="2021-03-30T22:28:42.000Z" itemprop="datePublished">2021-03-31</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="总结与教训"><a href="#总结与教训" class="headerlink" title="总结与教训"></a><strong>总结与教训</strong></h4><p>今天晚上睡眠质量很差，有蚊子。前一天晚上六点左右记得关窗。应急预案的话，就是打开空调，喷点花露水，把身体遮盖住，但是尽量别这么做。</p>
+<h4 id="健身"><a href="#健身" class="headerlink" title="健身"></a><strong>健身</strong></h4><h5 id="日常"><a href="#日常" class="headerlink" title="日常\"></a><strong><em>日常\</em></strong></h5><p> 没练，明天一定要开始了！！！！！</p>
+<h4 id="数学"><a href="#数学" class="headerlink" title="数学"></a><strong>数学</strong></h4><p>导数30min</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><strong>数据结构</strong></h4><p>没学</p>
+<h4 id="政治"><a href="#政治" class="headerlink" title="政治"></a><strong>政治</strong></h4><p>近代史早期探索：太平天国，洋务运动，维新运动</p>
+<p>错题：维新运动学习制度而洋务没有；资政新篇：第一本发展资本主义的方案。</p>
+<h4 id="英语"><a href="#英语" class="headerlink" title="英语"></a><strong>英语</strong></h4><p>没学</p>
+<h4 id="感想"><a href="#感想" class="headerlink" title="感想"></a><strong>感想</strong></h4><p><strong>今天确实不是很顺利，但是问题不大。我想：我们还是去图书馆学习吧。但是，有一说一，我们还得看视频课。明天先去自习室好了，上午把导数的两个视频看完。周五周六周日也看视频课，不过近期应该都不上课，可以持续到周三的样子，尽量看多的视频，大概就定个上册好了，这个星期看完视频课，然后下周四五六纯看书做题。算法，健身明天必须开始了，下午学习也在自习室好了。晚上回三楼。</strong></p>
+<p><strong>新任务：1.追踪一下B319的动态，周几会有人在。2.取出C414道具，插入c212，等待时机。</strong></p>
+<p><strong>今天jiamin还找了我，顺便把网站更新了一下，许多功能都实现了，创建了一个网站维修日志，遗留问题：分类标签（想想到时候替换成什么比较好。）</strong></p>
+<p><strong>东宝去了一趟华为，体验非常棒，确实就业也可以成为一种选择。但是有一说一：欲戴皇冠必承其重，环境这么好，要求肯定也会很高，也不必羡慕，做好自己就好，走好自己的路。</strong></p>
+<p><strong>希望晚上不要有蚊子，球球了，今晚十二点真提早了很多呢（自嘲），明天争取十一点之前吧。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%AD%E8%AE%B0/" rel="tag">札记</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-2021-3-30"
   class="article article-type-post"
   itemscope
