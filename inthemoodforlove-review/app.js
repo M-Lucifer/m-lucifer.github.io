@@ -433,6 +433,22 @@ function getPortraitRect(image, viewportWidth, viewportHeight, targetHeight, ali
   }
 }
 
+function getMobileWomanRect(image, viewportWidth, viewportHeight, visibleRatio = 1 / 3) {
+  const rect = getPortraitRect(image, viewportWidth, viewportHeight, viewportHeight, false)
+  rect.y = 0
+
+  const targetVisibleWidth = clamp(
+    Math.max(viewportWidth * visibleRatio, rect.width * (2 / 3)),
+    0,
+    viewportWidth,
+  )
+  if (rect.width > targetVisibleWidth) {
+    rect.x = targetVisibleWidth - rect.width
+  }
+
+  return rect
+}
+
 function getRectProgress(rect, y) {
   return clamp((y - rect.y) / Math.max(1, rect.height), 0, 1)
 }
@@ -456,14 +472,20 @@ function getPortraitExtraInset(rect, y, mobile) {
 }
 
 function getSmokeDefault(stage, typography) {
-  const defaultX = clamp(
-    lerp(stage.stableLeft, stage.stableRight, 0.55) - stage.smokeWidth * 0.36,
-    12,
-    stage.width - stage.smokeWidth - 12,
+  if (stage.mobile) {
+    return clampSmokePosition(
+      stage.width - stage.smokeWidth - 18,
+      stage.height - stage.smokeHeight - 18,
+      stage,
+    )
+  }
+
+  const defaultX = (stage.stableLeft + stage.stableRight) / 2 - stage.smokeWidth / 2
+  const defaultY = Math.max(
+    stage.textTop + typography.titleLineHeight + typography.bodyLineHeight * 2,
+    stage.height * 0.56,
   )
-  const defaultY =
-    stage.textTop + typography.titleLineHeight * 2 + typography.bodyLineHeight * 1.8
-  return { x: defaultX, y: defaultY }
+  return clampSmokePosition(defaultX, defaultY, stage)
 }
 
 function pickWidestSlot(slots) {
@@ -493,8 +515,10 @@ function getSmokeScreenRect(stage) {
 function clampSmokePosition(x, y, stage = state.stage) {
   if (!stage) return { x, y }
 
-  const maxX = Math.max(12, stage.width - state.smoke.width - 12)
-  const maxY = Math.max(12, stage.height - state.smoke.height - 12)
+  const smokeWidth = stage.smokeWidth ?? state.smoke.width
+  const smokeHeight = stage.smokeHeight ?? state.smoke.height
+  const maxX = Math.max(12, stage.width - smokeWidth - 12)
+  const maxY = Math.max(12, stage.height - smokeHeight - 12)
   return {
     x: clamp(x, 12, maxX),
     y: clamp(y, 12, maxY),
@@ -507,11 +531,15 @@ function computeStage(typography) {
   const height = state.viewportHeight
   const mobile = typography.mobile
 
-  const womanHeight = Math.round(height * (mobile ? 0.78 : width < 1120 ? 0.92 : 1))
-  const womanRect = getPortraitRect(state.assets.woman.image, width, height, womanHeight, false)
-  if (mobile) {
-    womanRect.y = Math.round(height * 0.08)
-  }
+  const womanRect = mobile
+    ? getMobileWomanRect(state.assets.woman.image, width, height)
+    : getPortraitRect(
+        state.assets.woman.image,
+        width,
+        height,
+        Math.round(height * (width < 1120 ? 0.92 : 1)),
+        false,
+      )
 
   const manRect = mobile
     ? null
@@ -525,7 +553,7 @@ function computeStage(typography) {
 
   const textPad = mobile ? 18 : 26
   const textTop = mobile
-    ? Math.max(Math.round(height * 0.1), Math.round(womanRect.y + 18))
+    ? Math.max(Math.round(height * 0.08), 64)
     : Math.max(Math.round(height * 0.11), 82)
   const rightMargin = mobile ? clamp(width * 0.07, 22, 42) : clamp(width * 0.08, 36, 84)
   const transition = mobile ? 132 : 188
