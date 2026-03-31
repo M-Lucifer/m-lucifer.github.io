@@ -1,14 +1,14 @@
 import {
   layoutNextLine,
   prepareWithSegments,
-} from './vendor/pretext/layout.js'
+} from '../node_modules/@chenglou/pretext/dist/layout.js'
 import { carveTextLineSlots } from './shared-wrap.js'
 
 const canvas = document.querySelector('#canvas')
 const spacer = document.querySelector('#scroll-space')
 const ctx = canvas.getContext('2d')
 
-const ASSET_ROOT = './assets'
+const ASSET_ROOT = '../inthemoodforlove'
 const FONT_STACK = 'SimSun, "Songti SC", "STSong", serif'
 const TITLE_COLOR = '#f7f4ee'
 const BODY_COLOR = '#e7e2d7'

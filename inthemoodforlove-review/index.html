@@ -71,16 +71,25 @@
         font: 500 12px/1.35 "Aptos", "Segoe UI", sans-serif;
         box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
         backdrop-filter: blur(12px);
+        animation: hint-fadeout 0.5s ease 10s forwards;
+      }
+
+      @keyframes hint-fadeout {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
       }
     </style>
   </head>
   <body>
     <div class="chrome">
-      <a class="back" href="/">Home</a>
-      <div class="hint">按住烟雾本体可拖动，正文会实时绕开它。</div>
+      <a class="back" href="../index.html">Back to index</a>
+      <div class="hint">按住烟雾本体可拖动，正文会实时绕开它�?/div>
     </div>
     <canvas id="canvas"></canvas>
     <div id="scroll-space" aria-hidden="true"></div>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./07-inthemoodforlove-review.js"></script>
   </body>
 </html>
+
