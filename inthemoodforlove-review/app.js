@@ -1,14 +1,14 @@
 import {
   layoutNextLine,
   prepareWithSegments,
-} from '../node_modules/@chenglou/pretext/dist/layout.js'
+} from './vendor/pretext/layout.js'
 import { carveTextLineSlots } from './shared-wrap.js'
 
 const canvas = document.querySelector('#canvas')
 const spacer = document.querySelector('#scroll-space')
 const ctx = canvas.getContext('2d')
 
-const ASSET_ROOT = '../inthemoodforlove'
+const ASSET_ROOT = './assets'
 const FONT_STACK = 'SimSun, "Songti SC", "STSong", serif'
 const TITLE_COLOR = '#f7f4ee'
 const BODY_COLOR = '#e7e2d7'
@@ -364,9 +364,9 @@ function getMaxSlotWidth(slots, fallbackWidth) {
 }
 
 function splitTitleIfNeeded(text, typography, stage) {
-  const normalizedText = text.replace(/[，,]+/g, ' ').replace(/\s+/g, ' ').trim()
+  const normalizedText = text.replace(/[�?]+/g, ' ').replace(/\s+/g, ' ').trim()
   const parts = text
-    .split(/[，,]/)
+    .split(/[�?]/)
     .map(part => part.trim())
     .filter(Boolean)
 
@@ -1281,7 +1281,7 @@ window.addEventListener('resize', () => {
 })
 
 async function init() {
-  drawMessage('正在准备花样年华影评页…')
+  drawMessage('正在准备花样年华影评页�?)
 
   const [markdown, background, woman, man, smoke] = await Promise.all([
     fetch(`${ASSET_ROOT}/movieReview.md`).then(async response => {
@@ -1316,5 +1316,6 @@ async function init() {
 init().catch(error => {
   state.failed = true
   console.error(error)
-  drawMessage('影评页加载失败，请检查本地资源。', '#f3b6a2')
+  drawMessage('影评页加载失败，请检查本地资源�?, '#f3b6a2')
 })
+
