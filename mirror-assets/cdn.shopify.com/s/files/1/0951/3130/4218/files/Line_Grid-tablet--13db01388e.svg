@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 744 1133" height="1133" width="744">
+<g clip-path="url(#clip0_2366_46844)">
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="735.8" x2="817" y1="735.8" x1="-73"></line>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="395.8" x2="817" y1="395.8" x1="-73"></line>
+<line stroke-width="0.4" stroke-opacity="0.1" stroke="black" y2="565.8" x2="817" y1="565.8" x1="-73"></line>
+<line stroke-dasharray="0.8 3.2" stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="1285.83" x2="817.105" y1="735.83" x1="-72.8949"></line>
+<line stroke-dasharray="0.8 3.2" stroke-width="0.4" stroke-opacity="0.2" stroke="black" transform="matrix(0.850672 -0.525696 -0.525696 -0.850672 -73 396)" y2="-0.2" x2="1046.23" y1="-0.2"></line>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="-154.105" x2="816.83" y1="1285.89" x1="-73.1701"></line>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="-153.895" x2="-73.1701" y1="1286.11" x1="816.83"></line>
+<line stroke-dasharray="0.8 3.2" stroke-width="0.4" stroke-opacity="0.1" stroke="black" y2="-149" x2="371.8" y1="1291" x1="371.8"></line>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" transform="rotate(90 -433 566)" r="805" cy="566" cx="-433"></circle>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" transform="rotate(90 -53 566)" r="425" cy="566" cx="-53"></circle>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" transform="rotate(90 797 566)" r="425" cy="566" cx="797"></circle>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" transform="rotate(90 1177 566)" r="805" cy="566" cx="1177"></circle>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="736" x2="266.8" y1="1286" x1="266.8"></line>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="396" x2="477.2" y1="-154" x1="477.2"></line>
+</g>
+<defs>
+<clipPath id="clip0_2366_46844">
+<rect transform="translate(817 -154) rotate(90)" fill="white" height="890" width="1440"></rect>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 392 664" height="664" width="392">
+<g clip-path="url(#clip0_22_881)">
+<g clip-path="url(#clip1_22_881)">
+<line stroke-dasharray="0.8 3.2" stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="0.89485" x2="392.83" y1="890.895" x1="-157.17"></line>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="1.17012" x2="-1047.11" y1="891.17" x1="392.895"></line>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="891.17" x2="-1046.89" y1="1.17013" x1="393.105"></line>
+<line stroke-dasharray="0.8 3.2" stroke-width="0.4" stroke-opacity="0.1" stroke="black" y2="446.2" x2="-1042" y1="446.2" x1="398"></line>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" r="805" cy="1251" cx="-327"></circle>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" r="425" cy="871" cx="-327"></circle>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" r="425" cy="21" cx="-327"></circle>
+<circle stroke-width="0.4" stroke-opacity="0.2" stroke="black" r="805" cy="-359" cx="-327"></circle>
+<line stroke-width="0.4" stroke-opacity="0.2" stroke="black" y2="551.2" x2="-157" y1="551.2" x1="393"></line>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_22_881">
+<rect fill="white" height="664" width="392"></rect>
+</clipPath>
+<clipPath id="clip1_22_881">
+<rect transform="translate(-1047 1)" fill="white" height="890" width="1440"></rect>
+</clipPath>
+</defs>
+</svg>
