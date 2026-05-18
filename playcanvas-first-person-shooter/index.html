@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>First Person Shooter | PlayCanvas Demo</title>
+    <title>PlayCanvas Demos</title>
     <style>
         :root {
             --bg: #0f172a;
@@ -95,17 +95,87 @@
             border: 1px solid rgba(148, 163, 184, 0.18);
         }
 
+        .section-title {
+            margin: 26px 0 12px;
+            font-size: 22px;
+            line-height: 1.25;
+        }
+
         .viewer {
+            position: relative;
             overflow: hidden;
             aspect-ratio: 16 / 9;
         }
 
-        iframe {
+        .viewer iframe,
+        .viewer canvas {
             display: block;
             width: 100%;
             height: 100%;
             border: 0;
             background: #000;
+        }
+
+        .viewer canvas {
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .viewer canvas:active {
+            cursor: grabbing;
+        }
+
+        .viewer-status {
+            position: absolute;
+            left: 16px;
+            bottom: 14px;
+            z-index: 2;
+            padding: 8px 10px;
+            border-radius: 999px;
+            color: var(--text);
+            background: rgba(2, 6, 23, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            font-size: 13px;
+            pointer-events: none;
+        }
+
+        .moon-tools {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px 18px;
+            margin-top: 12px;
+            padding: 16px;
+        }
+
+        .moon-tool {
+            display: grid;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .moon-tool label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .moon-tool output {
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .moon-tool input {
+            width: 100%;
+            accent-color: var(--accent);
+        }
+
+        .moon-tool-actions {
+            display: flex;
+            align-items: end;
+            justify-content: flex-end;
         }
 
         .tips {
@@ -128,20 +198,25 @@
             .viewer {
                 aspect-ratio: 10 / 16;
             }
+
+            .moon-tools {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <main>
         <section class="panel hero">
-            <h1>First Person Shooter</h1>
-            <p>这个页面把 PlayCanvas 导出项目作为站内互动内容嵌入进来。默认直接在页面里预览；如果你要全屏体验，或者后续要单独分享模型页面，可以打开独立版本。</p>
+            <h1>PlayCanvas Demos</h1>
+            <p>这里集中放两个 Web 3D 内容：一个是 PlayCanvas 导出的 FPS 场景，另一个是月球 Artemis II 数据的 Gaussian Splat 查看器。</p>
             <div class="actions">
                 <a class="button button-primary" href="../playcanvas-builds/first-person-shooter/" target="_blank" rel="noreferrer">打开独立页面</a>
                 <a class="button button-secondary" href="/">返回首页</a>
             </div>
         </section>
 
+        <h2 class="section-title">First Person Shooter</h2>
         <section class="panel viewer">
             <iframe
                 src="../playcanvas-builds/first-person-shooter/"
@@ -151,9 +226,432 @@
                 loading="eager"></iframe>
         </section>
 
+        <h2 class="section-title">The Moon Gaussian Splat</h2>
+        <section class="panel viewer">
+            <canvas id="moon-canvas" aria-label="The Moon Gaussian Splat viewer"></canvas>
+            <div class="viewer-status" id="moon-status">Loading moon splat...</div>
+        </section>
+
+        <section class="panel moon-tools" id="moon-tools" aria-label="Moon viewer controls">
+            <div class="moon-tool">
+                <label for="moon-yaw">View yaw <output id="moon-yaw-value">0</output></label>
+                <input id="moon-yaw" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="moon-pitch">View pitch <output id="moon-pitch-value">0</output></label>
+                <input id="moon-pitch" type="range" min="-80" max="80" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="moon-distance">View distance <output id="moon-distance-value">0</output></label>
+                <input id="moon-distance" type="range" min="1.2" max="100" step="0.1">
+            </div>
+            <div class="moon-tool">
+                <label for="moon-rot-x">Moon rot X <output id="moon-rot-x-value">0</output></label>
+                <input id="moon-rot-x" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="moon-rot-y">Moon rot Y <output id="moon-rot-y-value">0</output></label>
+                <input id="moon-rot-y" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="moon-rot-z">Moon rot Z <output id="moon-rot-z-value">0</output></label>
+                <input id="moon-rot-z" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool-actions">
+                <button class="button button-secondary" id="moon-reset" type="button">Reset moon view</button>
+            </div>
+        </section>
+
+        <h2 class="section-title">4335 25-26 Gaussian Splat</h2>
+        <section class="panel viewer">
+            <canvas id="scan-canvas" aria-label="4335 25-26 Gaussian Splat viewer"></canvas>
+            <div class="viewer-status" id="scan-status">Loading 4335 25-26 splat...</div>
+        </section>
+
+        <section class="panel moon-tools" id="scan-tools" aria-label="4335 25-26 viewer controls">
+            <div class="moon-tool">
+                <label for="scan-yaw">View yaw <output id="scan-yaw-value">0</output></label>
+                <input id="scan-yaw" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-pitch">View pitch <output id="scan-pitch-value">0</output></label>
+                <input id="scan-pitch" type="range" min="-80" max="80" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-distance">View distance <output id="scan-distance-value">0</output></label>
+                <input id="scan-distance" type="range" min="1.2" max="100" step="0.1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-rot-x">Splat rot X <output id="scan-rot-x-value">0</output></label>
+                <input id="scan-rot-x" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-rot-y">Splat rot Y <output id="scan-rot-y-value">0</output></label>
+                <input id="scan-rot-y" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-rot-z">Splat rot Z <output id="scan-rot-z-value">0</output></label>
+                <input id="scan-rot-z" type="range" min="-180" max="180" step="1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-center-x">Center X <output id="scan-center-x-value">0</output></label>
+                <input id="scan-center-x" type="range" min="-20" max="20" step="0.1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-center-y">Center Y <output id="scan-center-y-value">0</output></label>
+                <input id="scan-center-y" type="range" min="-20" max="20" step="0.1">
+            </div>
+            <div class="moon-tool">
+                <label for="scan-center-z">Center Z <output id="scan-center-z-value">0</output></label>
+                <input id="scan-center-z" type="range" min="-20" max="20" step="0.1">
+            </div>
+            <div class="moon-tool-actions">
+                <button class="button button-secondary" id="scan-recenter" type="button">Recenter</button>
+                <button class="button button-secondary" id="scan-reset" type="button">Reset scan view</button>
+            </div>
+        </section>
+
         <section class="panel tips">
-            鼠标和键盘事件会优先落在嵌入的应用里。如果某些浏览器里锁定鼠标或全屏不稳定，直接点上面的“打开独立页面”会更稳。
+            FPS 区域会优先接收鼠标和键盘事件。月球查看器可拖拽旋转、滚轮缩放，首次加载约 64 MB 的 .sog 文件。
         </section>
     </main>
+    <script src="../playcanvas-builds/first-person-shooter/playcanvas-stable.min.js"></script>
+    <script>
+        (() => {
+            function createSplatViewer(options) {
+                const canvas = document.getElementById(`${options.id}-canvas`);
+                const status = document.getElementById(`${options.id}-status`);
+                const storageKey = `${options.id}-splat-view-${options.storageVersion || 'v1'}`;
+                const mode = options.mode || 'orbit';
+                canvas.tabIndex = 0;
+                const saved = (() => {
+                    try {
+                        return JSON.parse(localStorage.getItem(storageKey)) || {};
+                    } catch (error) {
+                        return {};
+                    }
+                })();
+                const state = { ...options.defaults, ...saved };
+                const keys = new Set();
+
+                const app = new pc.Application(canvas, {
+                    graphicsDeviceOptions: {
+                        antialias: true,
+                        alpha: false
+                    },
+                    mouse: new pc.Mouse(canvas),
+                    touch: new pc.TouchDevice(canvas)
+                });
+
+                app.setCanvasFillMode(pc.FILLMODE_NONE);
+                app.setCanvasResolution(pc.RESOLUTION_AUTO);
+                app.scene.clearColor = new pc.Color(0.01, 0.012, 0.018, 1);
+                app.start();
+
+                const camera = new pc.Entity(`${options.name} Camera`);
+                camera.addComponent('camera', {
+                    clearColor: new pc.Color(0.01, 0.012, 0.018, 1),
+                    farClip: 1000,
+                    fov: 48
+                });
+                app.root.addChild(camera);
+
+                const splat = new pc.Entity(`${options.name} Splat`);
+                app.root.addChild(splat);
+
+                const asset = new pc.Asset(options.assetName, 'gsplat', {
+                    url: options.url
+                });
+
+                app.assets.add(asset);
+                asset.ready((loadedAsset) => {
+                    splat.addComponent('gsplat', {
+                        asset: loadedAsset
+                    });
+                    updateSplatRotation();
+                    status.textContent = mode === 'hybrid'
+                        ? 'Drag to look. WASD/QE to move. Recenter restores the default view.'
+                        : 'Drag to rotate. Scroll to zoom.';
+                    setTimeout(() => {
+                        status.style.display = 'none';
+                    }, 3200);
+                });
+                app.assets.load(asset);
+                asset.on('error', () => {
+                    status.textContent = `Failed to load ${options.name} splat.`;
+                });
+
+                let dragging = false;
+                let lastX = 0;
+                let lastY = 0;
+                const target = new pc.Vec3(0, 0, 0);
+                const controls = [
+                    ['yaw', document.getElementById(`${options.id}-yaw`), document.getElementById(`${options.id}-yaw-value`)],
+                    ['pitch', document.getElementById(`${options.id}-pitch`), document.getElementById(`${options.id}-pitch-value`)],
+                    ['distance', document.getElementById(`${options.id}-distance`), document.getElementById(`${options.id}-distance-value`)],
+                    ['rotX', document.getElementById(`${options.id}-rot-x`), document.getElementById(`${options.id}-rot-x-value`)],
+                    ['rotY', document.getElementById(`${options.id}-rot-y`), document.getElementById(`${options.id}-rot-y-value`)],
+                    ['rotZ', document.getElementById(`${options.id}-rot-z`), document.getElementById(`${options.id}-rot-z-value`)]
+                ].filter(([, input]) => input);
+                ['centerX', 'centerY', 'centerZ'].forEach((key) => {
+                    const id = key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+                    const input = document.getElementById(`${options.id}-${id}`);
+                    const output = document.getElementById(`${options.id}-${id}-value`);
+
+                    if (input && output) {
+                        controls.push([key, input, output]);
+                    }
+                });
+
+                const resize = () => {
+                    const rect = canvas.getBoundingClientRect();
+                    app.resizeCanvas(Math.max(1, Math.floor(rect.width)), Math.max(1, Math.floor(rect.height)));
+                };
+
+                function getCenter() {
+                    return {
+                        x: state.centerX || 0,
+                        y: state.centerY || 0,
+                        z: state.centerZ || 0
+                    };
+                }
+
+                function setCameraToCenteredView() {
+                    const yawRad = state.yaw * pc.math.DEG_TO_RAD;
+                    const pitchRad = state.pitch * pc.math.DEG_TO_RAD;
+                    const center = getCenter();
+
+                    state.camX = center.x + state.distance * Math.sin(yawRad) * Math.cos(pitchRad);
+                    state.camY = center.y + state.distance * Math.sin(pitchRad);
+                    state.camZ = center.z + state.distance * Math.cos(yawRad) * Math.cos(pitchRad);
+                }
+
+                if (mode === 'hybrid' && typeof state.camX !== 'number') {
+                    setCameraToCenteredView();
+                }
+
+                function saveState() {
+                    localStorage.setItem(storageKey, JSON.stringify(state));
+                }
+
+                function syncControls() {
+                    controls.forEach(([key, input, output]) => {
+                        input.value = state[key];
+                        output.value = Number(state[key]).toFixed(key === 'distance' || key.startsWith('center') ? 1 : 0);
+                    });
+                }
+
+                function updateSplatRotation() {
+                    splat.setEulerAngles(state.rotX, state.rotY, state.rotZ);
+                }
+
+                const updateCamera = () => {
+                    const yawRad = state.yaw * pc.math.DEG_TO_RAD;
+                    const pitchRad = state.pitch * pc.math.DEG_TO_RAD;
+                    const center = getCenter();
+
+                    if (mode === 'hybrid') {
+                        const lookTarget = new pc.Vec3(
+                            state.camX + Math.sin(yawRad) * Math.cos(pitchRad),
+                            state.camY + Math.sin(pitchRad),
+                            state.camZ + Math.cos(yawRad) * Math.cos(pitchRad)
+                        );
+
+                        camera.setPosition(state.camX, state.camY, state.camZ);
+                        camera.lookAt(lookTarget);
+                        syncControls();
+                        return;
+                    }
+
+                    const x = state.distance * Math.sin(yawRad) * Math.cos(pitchRad);
+                    const y = state.distance * Math.sin(pitchRad);
+                    const z = state.distance * Math.cos(yawRad) * Math.cos(pitchRad);
+
+                    target.set(center.x, center.y, center.z);
+                    camera.setPosition(center.x + x, center.y + y, center.z + z);
+                    camera.lookAt(target);
+                    syncControls();
+                };
+
+                canvas.addEventListener('pointerdown', (event) => {
+                    dragging = true;
+                    lastX = event.clientX;
+                    lastY = event.clientY;
+                    canvas.focus();
+                    canvas.setPointerCapture(event.pointerId);
+                });
+
+                canvas.addEventListener('pointermove', (event) => {
+                    if (!dragging) return;
+                    state.yaw -= (event.clientX - lastX) * 0.25;
+                    state.pitch += (event.clientY - lastY) * 0.25;
+                    state.pitch = pc.math.clamp(state.pitch, -80, 80);
+                    lastX = event.clientX;
+                    lastY = event.clientY;
+                    updateCamera();
+                    saveState();
+                });
+
+                canvas.addEventListener('pointerup', (event) => {
+                    dragging = false;
+                    canvas.releasePointerCapture(event.pointerId);
+                });
+
+                canvas.addEventListener('wheel', (event) => {
+                    event.preventDefault();
+                    if (mode === 'hybrid') {
+                        const yawRad = state.yaw * pc.math.DEG_TO_RAD;
+                        const pitchRad = state.pitch * pc.math.DEG_TO_RAD;
+                        const amount = event.deltaY > 0 ? -0.45 : 0.45;
+                        state.camX += Math.sin(yawRad) * Math.cos(pitchRad) * amount;
+                        state.camY += Math.sin(pitchRad) * amount;
+                        state.camZ += Math.cos(yawRad) * Math.cos(pitchRad) * amount;
+                    } else {
+                        state.distance *= event.deltaY > 0 ? 1.08 : 0.92;
+                        state.distance = pc.math.clamp(state.distance, 1.2, 100);
+                    }
+                    updateCamera();
+                    saveState();
+                }, { passive: false });
+
+                canvas.addEventListener('keydown', (event) => {
+                    if (mode !== 'hybrid') return;
+
+                    const key = event.key.toLowerCase();
+                    keys.add(key);
+                    if (['w', 'a', 's', 'd', 'q', 'e', 'shift'].includes(key)) {
+                        event.preventDefault();
+                    }
+                });
+
+                canvas.addEventListener('keyup', (event) => {
+                    if (mode !== 'hybrid') return;
+
+                    keys.delete(event.key.toLowerCase());
+                    saveState();
+                });
+
+                controls.forEach(([key, input]) => {
+                    input.addEventListener('input', () => {
+                        state[key] = Number(input.value);
+                        if (key.startsWith('rot')) {
+                            updateSplatRotation();
+                        } else {
+                            if (mode === 'hybrid' && key === 'distance') {
+                                setCameraToCenteredView();
+                            }
+                            updateCamera();
+                        }
+                        syncControls();
+                        saveState();
+                    });
+                });
+
+                document.getElementById(`${options.id}-reset`).addEventListener('click', () => {
+                    Object.assign(state, options.defaults);
+                    if (mode === 'hybrid') {
+                        setCameraToCenteredView();
+                    }
+                    updateSplatRotation();
+                    updateCamera();
+                    saveState();
+                });
+
+                const recenterButton = document.getElementById(`${options.id}-recenter`);
+                if (recenterButton) {
+                    recenterButton.addEventListener('click', () => {
+                        setCameraToCenteredView();
+                        updateCamera();
+                        saveState();
+                    });
+                }
+
+                app.on('update', (dt) => {
+                    if (mode !== 'hybrid' || !keys.size) return;
+
+                    const yawRad = state.yaw * pc.math.DEG_TO_RAD;
+                    const forwardX = Math.sin(yawRad);
+                    const forwardZ = Math.cos(yawRad);
+                    const rightX = Math.cos(yawRad);
+                    const rightZ = -Math.sin(yawRad);
+                    const speed = (keys.has('shift') ? 5 : 1.8) * dt;
+                    let moved = false;
+
+                    if (keys.has('w')) {
+                        state.camX += forwardX * speed;
+                        state.camZ += forwardZ * speed;
+                        moved = true;
+                    }
+                    if (keys.has('s')) {
+                        state.camX -= forwardX * speed;
+                        state.camZ -= forwardZ * speed;
+                        moved = true;
+                    }
+                    if (keys.has('d')) {
+                        state.camX += rightX * speed;
+                        state.camZ += rightZ * speed;
+                        moved = true;
+                    }
+                    if (keys.has('a')) {
+                        state.camX -= rightX * speed;
+                        state.camZ -= rightZ * speed;
+                        moved = true;
+                    }
+                    if (keys.has('e')) {
+                        state.camY += speed;
+                        moved = true;
+                    }
+                    if (keys.has('q')) {
+                        state.camY -= speed;
+                        moved = true;
+                    }
+
+                    if (moved) {
+                        updateCamera();
+                    }
+                });
+
+                new ResizeObserver(resize).observe(canvas);
+                resize();
+                syncControls();
+                updateCamera();
+            }
+
+            createSplatViewer({
+                id: 'moon',
+                name: 'moon',
+                assetName: 'moon-artemis-ii',
+                url: '../assets/gaussian-splats/moon-artemis-ii.sog',
+                defaults: {
+                    yaw: 35,
+                    pitch: -12,
+                    distance: 4.5,
+                    rotX: 180,
+                    rotY: 180,
+                    rotZ: 0
+                }
+            });
+
+            createSplatViewer({
+                id: 'scan',
+                name: '4335 25-26',
+                assetName: '4335-25-26',
+                url: '../assets/gaussian-splats/4335-25-26.sog',
+                storageVersion: 'v5',
+                mode: 'hybrid',
+                defaults: {
+                    yaw: 35,
+                    pitch: -12,
+                    distance: 8,
+                    rotX: 180,
+                    rotY: 0,
+                    rotZ: 0,
+                    centerX: 5,
+                    centerY: 8,
+                    centerZ: -1
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
